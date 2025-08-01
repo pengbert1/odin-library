@@ -2,6 +2,8 @@
 
 const myLibrary = [];
 
+
+
 //book constructor
 function Book(id,title, author, numPages, isRead){
     this.title = title;
@@ -30,6 +32,9 @@ function addBookToLibrary(title, author, numPages, isRead){
 
 }
 
+
+
+
 function displayBooks(){
 
 
@@ -38,6 +43,7 @@ function displayBooks(){
     if (oldBookGrid) {
         mainBody.removeChild(oldBookGrid);
     }
+    
 
 
 
@@ -48,41 +54,68 @@ function displayBooks(){
 
     
     for(let i = 0; i < myLibrary.length; i++){
+        console.log("looping" + i);
 
         const bookCard = document.createElement('div');
         bookCard.setAttribute("class", "book-card");
         const bookTitle = document.createElement('h5');
         const bookAuthor = document.createElement('p');
+        bookAuthor.setAttribute("class", "p-author");
         const numPages = document.createElement('p');
         const isRead = document.createElement('p');
         bookTitle.textContent = myLibrary[i].title;
         bookAuthor.textContent = myLibrary[i].author;
-        numPages.textContent = myLibrary[i].numPages;
+        numPages.textContent = myLibrary[i].numPages + " pages";
 
         if(myLibrary[i].isRead == true){
-            isRead.textContent = "Read";
+            isRead.textContent = "You've read this book!";
         }else{
-            isRead.textContent = "Not Read";
+            isRead.textContent = "Not Read Yet!";
         }
 
-        bookCard.append(bookTitle,bookAuthor,numPages,isRead);
+        //delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.setAttribute("class", "deleteButton");
+        const deleteimg = document.createElement('img');
+        deleteimg.setAttribute("src", "images/trash-can-outline.svg");
+        deleteButton.appendChild(deleteimg);
+
+
+        bookCard.append(bookTitle,bookAuthor,numPages,isRead, deleteButton);
         bookGrid.appendChild(bookCard);
+
+        //handling deletion
+        deleteButton.addEventListener('click', function () {
+            bookGrid.removeChild(bookCard);
+            myLibrary.splice(i, 1);
+            //avoiding array problems
+            i--;
+
+        });
 
 
         //console.log(myLibrary[i].info());
     }
+
+   
 
     mainBody.appendChild(bookGrid);
 
 
 }
 
-//const testBook = addBookToLibrary("title", "author", 100, false);
-//displayBooks();
 
 
 function createForm(){
     const topDiv = document.getElementById('form-section');
+
+
+    //check for and remove previous form if present
+    const prevform = document.getElementsByClassName("book-form")[0];
+    if(prevform){
+        form-Selection.removeChild(prevform);
+    }
+
 
     const form = document.createElement('form');
     form.setAttribute("class", "book-form");
@@ -151,9 +184,17 @@ function createForm(){
         topDiv.removeChild(form);
     });
 
-    //form.setAttribute()
+   
 
 
 
 
 }
+
+
+//populate the library with some books
+addBookToLibrary("The Lord of the Rings", "J.R.R. Tolkien", 1000, false);
+addBookToLibrary("War and Peace", "Leo Tolstoy", 1213, false);
+addBookToLibrary("The Count of Monte Cristo", "Alexandre Dumasy", 1353, true);
+displayBooks();
+console.log("initial books addded");

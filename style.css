@@ -5,6 +5,9 @@ body{
     flex-direction: column;
     align-items: center;
     min-width: fit-content;
+    height: 100vh;
+
+
 }
 #top{
     width: 100%;
@@ -18,6 +21,7 @@ body{
 
 #main-body{
     margin-top: 50px;
+    height: 80vh;
 }
 
 .header{
@@ -27,30 +31,42 @@ body{
     display: flex;
     gap: 50px;
     border-radius: 10px;
+    box-shadow: 5px 5px black;
+}
+
+.header h1{
+    font-size: 40pt;
 }
 
 
 .book-grid{
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    
+    justify-content: space-evenly;
+    align-content: flex-start;
+    gap: 50px;
+    padding-bottom: 50px;
+    overflow: hidden;
 
 }
 
 .book-card{
+    flex: 1 1 300px;
+    position: relative;
     display: flex;
     flex-direction: column;
-    min-height: 300px;
-    min-width: 500px;
     background-color: #e5eaf5;
-    border: 5px solid teal;
+    box-shadow: 10px 10px rgb(0, 0, 0);
+    max-width: 50%;
+    border-left: 10px solid teal;
     border-radius: 5px;
+    padding: 50px;
+    
 
 }
 
 .book-card h5{
-    font-size: 30pt;
+    font-size: 35pt;
     margin-top: 0px;
     margin-bottom: 10px;
     color: #8458B3;
@@ -63,9 +79,29 @@ body{
     margin-top: 0px;
     margin-left: 10px;
     margin-bottom: 10px;
+    flex-grow: 1;
     color: #8458B3
 }
 
+.book-card .p-author{
+    font-size: 12pt;
+    align-self: center;
+
+}
+
+.deleteButton{
+    border: none;
+    position: absolute;
+    width: 30px;
+    bottom: 0;
+    right: 0;
+    background-color: #e5eaf5;
+}
+
+.deleteButton img{
+    width: 100%;
+    height: auto;
+}
 #new-book-button{
     align-self: center;
     color: white;
@@ -74,12 +110,15 @@ body{
     height: 50px;
     border-radius: 10px;
     border: 0px;
+    box-shadow: 5px 5px black;
+   
 
 }
 
 .book-form{
     display: flex;
     gap: 20px;
+    justify-self: center;
 
     height: fit-content;
     margin-bottom: 20px;
@@ -87,6 +126,7 @@ body{
     padding: 20px;
     background-color: #e5eaf5;
     border-radius: 10px;
+    box-shadow: 5px 5px black;
 }
 
 .book-form input{
