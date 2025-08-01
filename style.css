@@ -1,28 +1,108 @@
 
 body{
     display: flex;
-    background-color: blue;
+    background-color: #494D5f;
     flex-direction: column;
+    align-items: center;
+    min-width: fit-content;
 }
 #top{
-    background-color: rgb(229, 11, 11);
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+   
 
 }
 
 
 #main-body{
-    background-color: brown;
+    margin-top: 50px;
+}
+
+.header{
+    background-color: #a0d2eb;
+    width: 80%;
+    justify-content: center;
+    display: flex;
+    gap: 50px;
+    border-radius: 10px;
 }
 
 
+.book-grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    
+
+}
+
+.book-card{
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    min-width: 500px;
+    background-color: #e5eaf5;
+    border: 5px solid teal;
+    border-radius: 5px;
+
+}
+
+.book-card h5{
+    font-size: 30pt;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    color: #8458B3;
+    align-self: center;
+
+}
+
+.book-card p{
+    font-size: 20pt;
+    margin-top: 0px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    color: #8458B3
+}
+
 #new-book-button{
+    align-self: center;
     color: white;
     background-color: teal;
     width: 100px;
     height: 50px;
+    border-radius: 10px;
+    border: 0px;
 
 }
 
 .book-form{
-    height: 500px;
+    display: flex;
+    gap: 20px;
+
+    height: fit-content;
+    margin-bottom: 20px;
+    width: fit-content;
+    padding: 20px;
+    background-color: #e5eaf5;
+    border-radius: 10px;
+}
+
+.book-form input{
+    border-radius: 5px;
+    border: 3px solid teal;
+    height: 30px;
+}
+
+.book-form label{
+    align-self: center;
+}
+
+#add-book-btn{
+    background-color: teal;
+    color: white;
+    border: 0px;
+    border-radius: 5px;
+    width: 100px;
 }

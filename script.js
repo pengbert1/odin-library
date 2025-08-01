@@ -31,26 +31,65 @@ function addBookToLibrary(title, author, numPages, isRead){
 }
 
 function displayBooks(){
-    for(let i = 0; i < myLibrary.length; i++){
-        
-        
-        console.log(myLibrary[i].info());
+
+
+    const mainBody = document.getElementById("main-body");
+    const oldBookGrid = document.getElementsByClassName("book-grid")[0];
+    if (oldBookGrid) {
+        mainBody.removeChild(oldBookGrid);
     }
+
+
+
+    const bookGrid = document.createElement('div');
+    bookGrid.setAttribute("class","book-grid");
+
+
+
+    
+    for(let i = 0; i < myLibrary.length; i++){
+
+        const bookCard = document.createElement('div');
+        bookCard.setAttribute("class", "book-card");
+        const bookTitle = document.createElement('h5');
+        const bookAuthor = document.createElement('p');
+        const numPages = document.createElement('p');
+        const isRead = document.createElement('p');
+        bookTitle.textContent = myLibrary[i].title;
+        bookAuthor.textContent = myLibrary[i].author;
+        numPages.textContent = myLibrary[i].numPages;
+
+        if(myLibrary[i].isRead == true){
+            isRead.textContent = "Read";
+        }else{
+            isRead.textContent = "Not Read";
+        }
+
+        bookCard.append(bookTitle,bookAuthor,numPages,isRead);
+        bookGrid.appendChild(bookCard);
+
+
+        //console.log(myLibrary[i].info());
+    }
+
+    mainBody.appendChild(bookGrid);
+
+
 }
 
-const testBook = addBookToLibrary("title", "author", 100, false);
-displayBooks();
+//const testBook = addBookToLibrary("title", "author", 100, false);
+//displayBooks();
 
 
 function createForm(){
-    const topDiv = document.getElementById('top');
+    const topDiv = document.getElementById('form-section');
 
     const form = document.createElement('form');
     form.setAttribute("class", "book-form");
     const titlelabel = document.createElement('label');
     const titleinput = document.createElement('input');
     titlelabel.setAttribute("for", "title");
-    titlelabel.textContent = "Book title";
+    titlelabel.textContent = "Book title:";
     titleinput.setAttribute("type", "text");
     titleinput.setAttribute("id", "title");
     titleinput.setAttribute("name", "title");
@@ -60,7 +99,7 @@ function createForm(){
     const authorlabel = document.createElement('label');
     const authorinput = document.createElement('input');
     authorlabel.setAttribute("for", "author");
-    authorlabel.textContent = "Author";
+    authorlabel.textContent = "Author:";
     authorinput.setAttribute("type", "text");
     authorinput.setAttribute("id", "author");
     authorinput.setAttribute("name", "author");
@@ -70,7 +109,7 @@ function createForm(){
     const numPageslabel = document.createElement('label');
     const numPagesinput = document.createElement('input');
     numPageslabel.setAttribute("for", "numPages");
-    numPageslabel.textContent = "Number of pages";
+    numPageslabel.textContent = "Number of pages:";
     numPagesinput.setAttribute("type", "number");
     numPagesinput.setAttribute("id", "numPages");
     numPagesinput.setAttribute("name", "numPages");
@@ -80,7 +119,7 @@ function createForm(){
     const isReadlabel = document.createElement('label');
     const isReadinput = document.createElement('input');
     isReadlabel.setAttribute("for", "isRead");
-    isReadlabel.textContent = "isRead";
+    isReadlabel.textContent = "isRead:";
     isReadinput.setAttribute("type", "checkbox");
     isReadinput.setAttribute("id", "isRead");
     isReadinput.setAttribute("name", "isRead");
@@ -88,6 +127,7 @@ function createForm(){
 
     const submitButton = document.createElement('button');
     submitButton.setAttribute("type", "submit");
+    submitButton.setAttribute("id", "add-book-btn");
     submitButton.textContent = "Add Book";
     form.appendChild(titlelabel);
     form.appendChild(titleinput);
